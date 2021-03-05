@@ -13,6 +13,7 @@
 
 	<modules>
 		<module>cinema-model</module>
+		<module>cinema-rest-api</module>
 	</modules>
 
 	<properties>
