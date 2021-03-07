@@ -7,18 +7,20 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>de.fhdw.informationsinfrastrukturen.cinema</groupId>
+ 
   <artifactId>cinema-rest-api</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  
 
   <name>cinema-rest-api</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+ 
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <service>
+			generated.cinemaApp.CinemaApp
+		</service>
   </properties>
 
   <dependencies>
@@ -28,6 +30,21 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.fhdw.informationsinfrastrukturen.cinema</groupId>
+			<artifactId>cinema-model</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>2.12.1</version>
+		</dependency>
   </dependencies>
 
   <build>

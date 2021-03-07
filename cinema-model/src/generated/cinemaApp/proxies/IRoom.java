@@ -1,4 +1,4 @@
-/**--- Generated at Sun Mar 07 14:53:48 CET 2021 
+/**--- Generated at Sun Mar 07 18:18:53 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.proxies;
@@ -18,7 +18,5 @@ public interface IRoom extends Identifiable{
    public void setName(String newName) throws PersistenceException;
    public Boolean getIsOpen() ;
    public void setIsOpen(Boolean newIsOpen) throws PersistenceException;
-   public void setUpRoom();
-   public void openRoom(Room room);
-   public void generateInitialRoom();
+   public void setUpRoom(Integer quantityRows, Integer quantitySeats);
 }
