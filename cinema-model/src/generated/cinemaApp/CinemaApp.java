@@ -1,4 +1,4 @@
-/**--- Generated at Fri Mar 05 13:35:18 CET 2021 
+/**--- Generated at Sun Mar 07 14:53:48 CET 2021 
  * --- Change only in Editable Sections!  
  * --- Do not touch section numbering!   
  */
@@ -231,24 +231,24 @@ public class CinemaApp extends Observable{
    }
    //80 ===== Editable : Your Operations =============
 /**
- * get the income of a choosen showing
+ * return the income of a choosen showing
  */
-   public Integer getIncome(Showing showing){
-      // TODO: Implement Operation getIncome
-      return null;
-   }
-/**
- * person books reservation which was made before
- */
-   public Booking bookSeat(Person person, Reservation reservation){
-      // TODO: Implement Operation bookSeat
+   public Integer calculateIncome(Showing showing){
+      // TODO: Implement Operation calculateIncome
       return null;
    }
 /**
  * person reserves one seat in a choosen showing
  */
-   public Reservation reserveSeat(Person person, Showing showing, Seat seat)throws NotAvailable{
+   public Reservation reserveSeat(Person person, Showing showing, Row row)throws NotAvailable{
       // TODO: Implement Operation reserveSeat
+      return null;
+   }
+/**
+ * person books reservation which was made before
+ */
+   public Booking bookSeat(Person person){
+      // TODO: Implement Operation bookSeat
       return null;
    }
 //90 ===== GENERATED: End of Your Operations ======

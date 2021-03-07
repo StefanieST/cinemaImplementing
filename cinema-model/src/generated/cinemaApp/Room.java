@@ -1,4 +1,4 @@
-/**--- Generated at Fri Mar 05 13:35:19 CET 2021 
+/**--- Generated at Sun Mar 07 14:53:48 CET 2021 
  * --- Change only in Editable Sections!  
  * --- Do not touch section numbering!   
  */
@@ -99,13 +99,6 @@ public class Room extends Observable implements java.io.Serializable, IRoom
    }
    //80 ===== Editable : Your Operations =============
 /**
- * generate an empty Room
- */
-   public void generateInitialRoom(){
-      // TODO: Implement Operation generateInitialRoom
-      return;
-   }
-/**
  * sets up the room by creating rows and seats
  */
    public void setUpRoom(){
@@ -117,6 +110,13 @@ public class Room extends Observable implements java.io.Serializable, IRoom
  */
    public void openRoom(Room room){
       // TODO: Implement Operation openRoom
+      return;
+   }
+/**
+ * generate an empty Room
+ */
+   public void generateInitialRoom(){
+      // TODO: Implement Operation generateInitialRoom
       return;
    }
 //90 ===== GENERATED: End of Your Operations ======

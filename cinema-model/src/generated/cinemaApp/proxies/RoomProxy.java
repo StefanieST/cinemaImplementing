@@ -1,4 +1,4 @@
-/**--- Generated at Fri Mar 05 13:35:19 CET 2021 
+/**--- Generated at Sun Mar 07 14:53:48 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.proxies;
@@ -68,13 +68,13 @@ public class RoomProxy implements IRoom{
    public void setIsOpen(Boolean newIsOpen) throws PersistenceException{
       this.getTheObject().setIsOpen(newIsOpen);
    }
-   public void generateInitialRoom(){
-      this.getTheObject().generateInitialRoom();
-   }
    public void setUpRoom(){
       this.getTheObject().setUpRoom();
    }
    public void openRoom(Room room){
       this.getTheObject().openRoom(room);
+   }
+   public void generateInitialRoom(){
+      this.getTheObject().generateInitialRoom();
    }
 }
