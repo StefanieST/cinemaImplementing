@@ -1,11 +1,11 @@
-/**--- Generated at Sun Mar 07 14:53:48 CET 2021 
+/**--- Generated at Tue Mar 09 22:50:57 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.commands;
 import generated.cinemaApp.*;
 import commands.*;
 public class Seat_constructor_Command extends ServiceCommand<Seat>{
-   private static final long serialVersionUID = 1431430493L;
+   private static final long serialVersionUID = -919356975L;
    private Integer  number;
    private Row  row;
    public Seat_constructor_Command(Integer  number, Row  row){

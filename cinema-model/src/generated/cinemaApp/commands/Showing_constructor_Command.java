@@ -1,11 +1,11 @@
-/**--- Generated at Sun Mar 07 18:18:52 CET 2021 
+/**--- Generated at Tue Mar 09 22:50:56 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.commands;
 import generated.cinemaApp.*;
 import commands.*;
 public class Showing_constructor_Command extends ServiceCommand<Showing>{
-   private static final long serialVersionUID = 2070730317L;
+   private static final long serialVersionUID = -1365081514L;
    private Film film;
    private Room room;
    public Showing_constructor_Command(Film film, Room room){

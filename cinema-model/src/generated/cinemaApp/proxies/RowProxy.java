@@ -1,4 +1,4 @@
-/**--- Generated at Sun Mar 07 18:18:53 CET 2021 
+/**--- Generated at Tue Mar 09 22:50:57 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.proxies;
@@ -14,6 +14,7 @@ import generated.cinemaApp.Category;
 import generated.cinemaApp.relationControl.rowCategorySupervisor;
 import generated.cinemaApp.Room;
 import generated.cinemaApp.relationControl.rowRoomSupervisor;
+import generated.cinemaApp.ModelException;
 public class RowProxy implements IRow{
    private Integer id;
    private Optional<Row> theObject;
@@ -75,5 +76,8 @@ public class RowProxy implements IRow{
    }
    public Room getRoom() throws PersistenceException{
       return this.getTheObject().getRoom();
+   }
+   public void createSeatsPerRow(Integer quantityOfSeats)throws ModelException{
+      this.getTheObject().createSeatsPerRow(quantityOfSeats);
    }
 }

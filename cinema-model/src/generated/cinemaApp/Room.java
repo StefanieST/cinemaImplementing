@@ -1,4 +1,4 @@
-/**--- Generated at Sun Mar 07 18:18:53 CET 2021 
+/**--- Generated at Tue Mar 09 22:50:56 CET 2021 
  * --- Change only in Editable Sections!  
  * --- Do not touch section numbering!   
  */
@@ -25,31 +25,29 @@ public class Room extends Observable implements java.io.Serializable, IRoom
    //30 ===== GENERATED:      Attribute Section ======
    private Integer id;
    private String name;
-   private Boolean isOpen;
    //40 ===== Editable : Your Attribute Section ======
    
    //50 ===== GENERATED:      Constructor ============
-   private Room(Integer id, String name, Boolean isOpen, boolean objectOnly)
+   private Room(Integer id, String name, boolean objectOnly)
    {
       super();
       this.setId(id);
       this.name = name;
-      this.isOpen = isOpen;
       if(objectOnly) return;
    }
    /** Caution: A Call to this Method Requires to add any newly instantiated Object to its Cache! */
-   public static Room createAlreadyPersistent(RoomProxy proxy, String name, Boolean isOpen){
+   public static Room createAlreadyPersistent(RoomProxy proxy, String name){
       if(proxy.isObjectPresent()) return proxy.getTheObject();
-      return new Room(proxy.getId(), name, isOpen, true);
+      return new Room(proxy.getId(), name, true);
    }
-   public static Room createFresh(String name, Boolean isOpen)throws PersistenceException{
+   public static Room createFresh(String name)throws PersistenceException{
       db.executer.DBDMLExecuter dmlExecuter = PersistenceExecuterFactory.getConfiguredFactory().getDBDMLExecuter();
       Integer id = dmlExecuter.getNextId();
       try{
-         dmlExecuter.insertInto("Room", "id, typeKey, name, isOpen", 
-         id.toString() + ", " + TypeKeyManager.getTheInstance().getTypeKey("CinemaApp", "Room").toString() + ", " + "'" + name + "'" + ", " + isOpen.toString());
+         dmlExecuter.insertInto("Room", "id, typeKey, name", 
+         id.toString() + ", " + TypeKeyManager.getTheInstance().getTypeKey("CinemaApp", "Room").toString() + ", " + "'" + name + "'");
       }catch(SQLException|NoConnectionException e){throw new PersistenceException(e.getMessage());}
-      Room me = new Room(id, name, isOpen, false);
+      Room me = new Room(id, name, false);
       CinemaApp.getInstance().addRoomProxy(new RoomProxy(me));
       return me;
    }
@@ -89,31 +87,6 @@ public class Room extends Observable implements java.io.Serializable, IRoom
       try{PersistenceExecuterFactory.getConfiguredFactory().getDBDMLExecuter().update("Room", "name", "'" + newName + "'", this.getId());
       }catch(SQLException|NoConnectionException e){throw new PersistenceException(e.getMessage());}
    }
-   public Boolean getIsOpen() {
-      return this.isOpen;
-   }
-   public void setIsOpen(Boolean newIsOpen) throws PersistenceException{
-      this.isOpen = newIsOpen;
-      try{PersistenceExecuterFactory.getConfiguredFactory().getDBDMLExecuter().update("Room", "isOpen", newIsOpen.toString(), this.getId());
-      }catch(SQLException|NoConnectionException e){throw new PersistenceException(e.getMessage());}
-   }
    //80 ===== Editable : Your Operations =============
-/**
- * releases the room
- */
-   public void openRoom(Room room){
-      // TODO: Implement Operation openRoom
-      return;
-   }
-
-/**
- * sets up the room by creating rows and seats
- */
-   public void setUpRoom(Integer quantityRows, Integer quantitySeats){
-      // TODO: Implement Operation setUpRoom
-	   
-	   
-      return;
-   }
 //90 ===== GENERATED: End of Your Operations ======
 }

@@ -1,4 +1,4 @@
-/**--- Generated at Sun Mar 07 18:18:53 CET 2021 
+/**--- Generated at Tue Mar 09 22:50:56 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.proxies;
@@ -43,8 +43,7 @@ public class RoomProxy implements IRoom{
       try {
          rs = DBExecuterFactory.getConfiguredFactory().getDBDMLExecuter().selectIdSpecifiedCursorAleadyAtFirstRow("Room", this.id);
          String name = rs.getString("name");
-         Boolean isOpen = rs.getBoolean("isOpen");
-         return Room.createAlreadyPersistent(this, name, isOpen);
+         return Room.createAlreadyPersistent(this, name);
       } catch (Exception e) {throw new PersistenceException(e.getMessage());}
    }
    public List<Row> getRows() throws PersistenceException{
@@ -61,14 +60,5 @@ public class RoomProxy implements IRoom{
    }
    public void setName(String newName) throws PersistenceException{
       this.getTheObject().setName(newName);
-   }
-   public Boolean getIsOpen() {
-      return this.getTheObject().getIsOpen();
-   }
-   public void setIsOpen(Boolean newIsOpen) throws PersistenceException{
-      this.getTheObject().setIsOpen(newIsOpen);
-   }
-   public void setUpRoom(Integer quantityRows, Integer quantitySeats){
-      this.getTheObject().setUpRoom(quantityRows, quantitySeats);
    }
 }

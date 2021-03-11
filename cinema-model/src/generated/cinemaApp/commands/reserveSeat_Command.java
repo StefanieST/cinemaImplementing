@@ -1,11 +1,11 @@
-/**--- Generated at Sun Mar 07 14:53:48 CET 2021 
+/**--- Generated at Tue Mar 09 22:50:56 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.commands;
 import generated.cinemaApp.*;
 import commands.*;
 public class reserveSeat_Command extends ServiceCommand<Reservation>{
-   private static final long serialVersionUID = 1716839066L;
+   private static final long serialVersionUID = 1652121312L;
    private Person person;
    private Showing showing;
    private Row row;

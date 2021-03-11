@@ -1,4 +1,4 @@
-/**--- Generated at Sun Mar 07 18:18:53 CET 2021 
+/**--- Generated at Tue Mar 09 22:50:57 CET 2021 
  * --- Change only in Editable Sections!  
  * --- Do not touch section numbering!   
  */
@@ -99,5 +99,17 @@ public class Row extends Observable implements java.io.Serializable, IRow
       return rowRoomSupervisor.getInstance().getRoom(this).getTheObject();
    }
    //80 ===== Editable : Your Operations =============
+/**
+ * creates a quantity of Seats for a created row
+ */
+   public void createSeatsPerRow(Integer quantityOfSeats)throws ModelException{
+	
+		      for(int counter = 1; counter > quantityOfSeats; counter ++) {
+					
+				  final Seat seat = Seat.createFresh(counter, this);
+				  this.addToSeats(seat);
+		
+		   }
+   }
 //90 ===== GENERATED: End of Your Operations ======
 }

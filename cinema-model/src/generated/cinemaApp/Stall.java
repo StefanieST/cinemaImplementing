@@ -1,4 +1,4 @@
-/**--- Generated at Sun Mar 07 18:18:53 CET 2021 
+/**--- Generated at Tue Mar 09 22:50:57 CET 2021 
  * --- Change only in Editable Sections!  
  * --- Do not touch section numbering!   
  */
@@ -15,7 +15,6 @@ import db.executer.PersistenceExecuterFactory;
 import generated.cinemaApp.proxies.IStall;
 import exceptions.ConstraintViolation;
 //20 ===== Editable : Your Import Section =========
-
 
 //25 ===== GENERATED:      Header Section =========
 public class Stall extends Category implements java.io.Serializable, IStall
