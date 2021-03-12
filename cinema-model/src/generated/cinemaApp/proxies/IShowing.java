@@ -1,4 +1,4 @@
-/**--- Generated at Tue Mar 09 22:50:56 CET 2021 
+/**--- Generated at Thu Mar 11 23:51:08 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.proxies;
@@ -7,14 +7,15 @@ import db.executer.PersistenceException;
 import generated.cinemaApp.Showing;
 import generated.cinemaApp.Reservation;
 import java.util.Set;
+import exceptions.ConstraintViolation;
 import generated.cinemaApp.Film;
 import generated.cinemaApp.Room;
 public interface IShowing extends Identifiable{
    public Showing getTheObject();
    public Integer getId();
    public Set<Reservation> getReservation() throws PersistenceException;
-   public void addToReservation(Reservation arg) throws PersistenceException;
-   public boolean removeFromReservation(Reservation arg) throws PersistenceException;
+   public void addToReservation(Reservation arg) throws ConstraintViolation, PersistenceException;
+   public boolean removeFromReservation(Reservation arg) throws ConstraintViolation, PersistenceException;
    public Film getFilm() throws PersistenceException;
    public void setFilm(Film newFilm)throws PersistenceException;
    public Room getRoom() throws PersistenceException;

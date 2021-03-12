@@ -1,4 +1,4 @@
-/**--- Generated at Tue Mar 09 22:50:56 CET 2021 
+/**--- Generated at Thu Mar 11 23:51:08 CET 2021 
  * --- Change only in Editable Sections!  
  * --- Do not touch section numbering!   
  */
@@ -29,27 +29,28 @@ public class Reservation extends Observable implements java.io.Serializable, IRe
    //40 ===== Editable : Your Attribute Section ======
    
    //50 ===== GENERATED:      Constructor ============
-   private Reservation(Integer id, Person person, Seat seat, boolean objectOnly)
+   private Reservation(Integer id, Person person, Seat seat, Showing showing, boolean objectOnly)
    throws PersistenceException{
       super();
       this.setId(id);
       personReservationSupervisor.getInstance().set(this, person);
       reservationSeatSupervisor.getInstance().set(this, seat);
       if(objectOnly) return;
+      try{reservationShowingSupervisor.getInstance().add(showing,this);}catch(ConstraintViolation cv){}// Ok, because consistency is guaranteed with this statement
    }
    /** Caution: A Call to this Method Requires to add any newly instantiated Object to its Cache! */
-   public static Reservation createAlreadyPersistent(ReservationProxy proxy, Person person, Seat seat)throws PersistenceException{
+   public static Reservation createAlreadyPersistent(ReservationProxy proxy, Person person, Seat seat, Showing showing)throws PersistenceException{
       if(proxy.isObjectPresent()) return proxy.getTheObject();
-      return new Reservation(proxy.getId(), person, seat, true);
+      return new Reservation(proxy.getId(), person, seat, showing, true);
    }
-   public static Reservation createFresh(Person person, Seat seat)throws PersistenceException{
+   public static Reservation createFresh(Person person, Seat seat, Showing showing)throws PersistenceException{
       db.executer.DBDMLExecuter dmlExecuter = PersistenceExecuterFactory.getConfiguredFactory().getDBDMLExecuter();
       Integer id = dmlExecuter.getNextId();
       try{
          dmlExecuter.insertInto("Reservation", "id, typeKey", 
          id.toString() + ", " + TypeKeyManager.getTheInstance().getTypeKey("CinemaApp", "Reservation").toString());
       }catch(SQLException|NoConnectionException e){throw new PersistenceException(e.getMessage());}
-      Reservation me = new Reservation(id, person, seat, false);
+      Reservation me = new Reservation(id, person, seat, showing, false);
       CinemaApp.getInstance().addReservationProxy(new ReservationProxy(me));
       return me;
    }
@@ -89,10 +90,8 @@ public class Reservation extends Observable implements java.io.Serializable, IRe
    public void setSeat(Seat newSeat)throws PersistenceException{
       reservationSeatSupervisor.getInstance().change(this, this.getSeat(), newSeat);
    }
-   public Set<Showing> getShowing() throws PersistenceException{
-      Set<Showing> result = new HashSet<>();
-      for (IShowing i : reservationShowingSupervisor.getInstance().getShowing(this)) result.add(i.getTheObject());
-      return result;
+   public Showing getShowing() throws PersistenceException{
+      return reservationShowingSupervisor.getInstance().getShowing(this).getTheObject();
    }
    //80 ===== Editable : Your Operations =============
 //90 ===== GENERATED: End of Your Operations ======

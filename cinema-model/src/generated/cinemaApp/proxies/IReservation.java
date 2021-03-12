@@ -1,4 +1,4 @@
-/**--- Generated at Tue Mar 09 22:50:56 CET 2021 
+/**--- Generated at Thu Mar 11 23:51:08 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.proxies;
@@ -10,7 +10,6 @@ import generated.cinemaApp.Booking;
 import java.util.Optional;
 import generated.cinemaApp.Seat;
 import generated.cinemaApp.Showing;
-import java.util.Set;
 public interface IReservation extends Identifiable{
    public Reservation getTheObject();
    public Integer getId();
@@ -20,5 +19,5 @@ public interface IReservation extends Identifiable{
    public void setBooking(Booking newBooking)throws PersistenceException;
    public Seat getSeat() throws PersistenceException;
    public void setSeat(Seat newSeat)throws PersistenceException;
-   public Set<Showing> getShowing() throws PersistenceException;
+   public Showing getShowing() throws PersistenceException;
 }

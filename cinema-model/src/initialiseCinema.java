@@ -8,6 +8,7 @@ import generated.cinemaApp.Film;
 import generated.cinemaApp.ModelException;
 import generated.cinemaApp.Room;
 import generated.cinemaApp.Row;
+import generated.cinemaApp.Showing;
 import generated.cinemaApp.Stall;
 
 public class initialiseCinema {
@@ -56,7 +57,11 @@ public class initialiseCinema {
 			rowEroomTwo.createSeatsPerRow(5);
 		Row rowFroomTwo = Row.createFresh(back, "F", roomTwo);
 			rowFroomTwo.createSeatsPerRow(5);
-
+		
+		Showing showOne = Showing.createFresh(pets, roomOne);
+		Showing showTwo = Showing.createFresh(madagascar, roomTwo);
+		Showing showThree = Showing.createFresh(zootopia, roomTwo);
+		System.out.println("Initialisation completed!");
 	}
 
 }

@@ -1,4 +1,4 @@
-/**--- Generated at Tue Mar 09 22:50:56 CET 2021 
+/**--- Generated at Thu Mar 11 23:51:08 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.proxies;
@@ -13,7 +13,7 @@ import generated.cinemaApp.Booking;
 import generated.cinemaApp.Seat;
 import generated.cinemaApp.relationControl.reservationSeatSupervisor;
 import generated.cinemaApp.Showing;
-import java.util.Set;
+import generated.cinemaApp.relationControl.reservationShowingSupervisor;
 public class ReservationProxy implements IReservation{
    private Integer id;
    private Optional<Reservation> theObject;
@@ -48,7 +48,8 @@ public class ReservationProxy implements IReservation{
          rs = DBExecuterFactory.getConfiguredFactory().getDBDMLExecuter().selectIdSpecifiedCursorAleadyAtFirstRow("Reservation", this.id);
          Person person = personReservationSupervisor.getInstance().getPerson(this).getTheObject();
          Seat seat = reservationSeatSupervisor.getInstance().getSeat(this).getTheObject();
-         return Reservation.createAlreadyPersistent(this, person, seat);
+         Showing showing = reservationShowingSupervisor.getInstance().getShowing(this).getTheObject();
+         return Reservation.createAlreadyPersistent(this, person, seat, showing);
       } catch (Exception e) {throw new PersistenceException(e.getMessage());}
    }
    public Person getPerson() throws PersistenceException{
@@ -69,7 +70,7 @@ public class ReservationProxy implements IReservation{
    public void setSeat(Seat newSeat)throws PersistenceException{
       this.getTheObject().setSeat(newSeat);
    }
-   public Set<Showing> getShowing() throws PersistenceException{
+   public Showing getShowing() throws PersistenceException{
       return this.getTheObject().getShowing();
    }
 }

@@ -1,4 +1,4 @@
-/**--- Generated at Tue Mar 09 22:50:56 CET 2021 
+/**--- Generated at Thu Mar 11 23:51:08 CET 2021 
  * --- Change only in Editable Sections!  
  * --- Do not touch section numbering!   
  */
@@ -73,10 +73,10 @@ public class Showing extends Observable implements java.io.Serializable, IShowin
       for (IReservation i : reservationShowingSupervisor.getInstance().getReservation(this)) result.add(i.getTheObject());
       return result;
    }
-   public void addToReservation(Reservation arg) throws PersistenceException{
+   public void addToReservation(Reservation arg) throws ConstraintViolation, PersistenceException{
       reservationShowingSupervisor.getInstance().add(this, arg);
    }
-   public boolean removeFromReservation(Reservation arg) throws PersistenceException{
+   public boolean removeFromReservation(Reservation arg) throws ConstraintViolation, PersistenceException{
       return reservationShowingSupervisor.getInstance().remove(this, arg);
    }
    public Film getFilm() throws PersistenceException{

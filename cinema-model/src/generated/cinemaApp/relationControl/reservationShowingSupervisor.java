@@ -1,4 +1,4 @@
-/**--- Generated at Tue Mar 09 22:50:57 CET 2021 
+/**--- Generated at Thu Mar 11 23:51:09 CET 2021 
  * --- Change only in Editable Sections!  
  * --- Do not touch section numbering!   
  */
@@ -31,23 +31,26 @@ public class reservationShowingSupervisor
    public Set<IReservation> getReservation(IShowing owner){
       return this.elements.getRelatedTargets(owner).stream().collect(Collectors.toSet());
    }
-   public void add(IShowing owner, IReservation target) throws PersistenceException{
+   public void add(IShowing owner, IReservation target) throws ConstraintViolation, PersistenceException{
+      this.elements.willViolateInjectivity(owner, target);
       this.elements.addElement(owner,target);
    }
-   public void addAlreadyPersistent(IShowing owner, IReservation target) throws PersistenceException{
+   public void addAlreadyPersistent(IShowing owner, IReservation target) throws ConstraintViolation, PersistenceException{
+      this.elements.willViolateInjectivity(owner, target);
       this.elements.addElementAlreadyPersistent(owner,target);
    }
-   public boolean remove(IShowing owner, IReservation target) throws PersistenceException{
+   public boolean remove(IShowing owner, IReservation target) throws ConstraintViolation, PersistenceException{
       boolean loop = this.removeOnce(owner, target);
       boolean result = loop;
       while(loop) loop = this.removeOnce(owner, target);
       return result;
    }
-   private boolean removeOnce(IShowing owner, IReservation target) throws PersistenceException{
+   private boolean removeOnce(IShowing owner, IReservation target) throws ConstraintViolation, PersistenceException{
+      this.elements.willViolateSurjectivity(owner, target);
       return this.elements.removeElement(owner,target);
    }
-   public Set<IShowing> getShowing(IReservation target){
-      return this.elements.getRelatedSources(target).stream().collect(Collectors.toSet());
+   public IShowing getShowing(IReservation target){
+      return this.elements.getRelatedSources(target).get(0);
    }
    //80 ===== Editable : Your Operations =============
 //90 ===== GENERATED: End of Your Operations ======

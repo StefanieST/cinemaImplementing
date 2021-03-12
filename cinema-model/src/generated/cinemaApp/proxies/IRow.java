@@ -1,4 +1,4 @@
-/**--- Generated at Tue Mar 09 22:50:57 CET 2021 
+/**--- Generated at Thu Mar 11 23:51:08 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.proxies;
@@ -10,7 +10,6 @@ import java.util.List;
 import exceptions.ConstraintViolation;
 import generated.cinemaApp.Category;
 import generated.cinemaApp.Room;
-import generated.cinemaApp.ModelException;
 public interface IRow extends Identifiable{
    public Row getTheObject();
    public Integer getId();
@@ -22,5 +21,4 @@ public interface IRow extends Identifiable{
    public String getName() ;
    public void setName(String newName) throws PersistenceException;
    public Room getRoom() throws PersistenceException;
-   public void createSeatsPerRow(Integer quantityOfSeats)throws ModelException;
 }

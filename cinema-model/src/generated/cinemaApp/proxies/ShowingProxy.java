@@ -1,4 +1,4 @@
-/**--- Generated at Tue Mar 09 22:50:56 CET 2021 
+/**--- Generated at Thu Mar 11 23:51:08 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.proxies;
@@ -9,6 +9,7 @@ import generated.cinemaApp.Showing;
 import java.sql.ResultSet;
 import generated.cinemaApp.Reservation;
 import java.util.Set;
+import exceptions.ConstraintViolation;
 import generated.cinemaApp.Film;
 import generated.cinemaApp.relationControl.showingFilmSupervisor;
 import generated.cinemaApp.Room;
@@ -53,10 +54,10 @@ public class ShowingProxy implements IShowing{
    public Set<Reservation> getReservation() throws PersistenceException{
       return this.getTheObject().getReservation();
    }
-   public void addToReservation(Reservation arg) throws PersistenceException{
+   public void addToReservation(Reservation arg) throws ConstraintViolation, PersistenceException{
       this.getTheObject().addToReservation(arg);
    }
-   public boolean removeFromReservation(Reservation arg) throws PersistenceException{
+   public boolean removeFromReservation(Reservation arg) throws ConstraintViolation, PersistenceException{
       return this.getTheObject().removeFromReservation(arg);
    }
    public Film getFilm() throws PersistenceException{
