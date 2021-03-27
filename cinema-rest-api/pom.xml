@@ -5,7 +5,9 @@
     <artifactId>cinema</artifactId>
     <groupId>de.fhdw.informationsinfrastrukturen.cinema</groupId>
     <version>0.0.1-SNAPSHOT</version>
+   
   </parent>
+  <packaging>war</packaging>
 
  
   <artifactId>cinema-rest-api</artifactId>

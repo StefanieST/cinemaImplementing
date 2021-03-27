@@ -1,13 +1,9 @@
 package de.fhdw.informationsinfrastrukturen.cinema.rest.api;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+
+@ApplicationPath("")
+public class App extends Application {
+
 }

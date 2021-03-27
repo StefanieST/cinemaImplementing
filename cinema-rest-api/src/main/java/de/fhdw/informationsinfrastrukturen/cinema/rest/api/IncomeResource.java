@@ -18,9 +18,14 @@ public class IncomeResource {
 	@Path("/{showingId}")
 	@Produces(MediaType.TEXT_PLAIN)
 	@GET
-	public Integer income(@PathParam("showingId") String showingId) throws ModelException {
-		Showing showing = CinemaApp.getInstance().getShowing(Integer.valueOf(showingId));
-		return CinemaApp.getInstance().calculateIncome(showing);
+	public Response income(@PathParam("showingId") String showingId) {
+		try {
+			Showing showing = CinemaApp.getInstance().getShowing(Integer.valueOf(showingId));
+			return Response.status(200).entity(CinemaApp.getInstance().calculateIncome(showing)).build();
+		} catch (Exception e) {
+			return Response.status(400).entity("The requested showing id does not exist.").build();
+		}
+
 		// Url?username=Hugo&showing=1
 
 	}
@@ -30,8 +35,8 @@ public class IncomeResource {
 	@GET
 	public Response status() {
 		if (this.INIT_ERROR == null)
-			return Response.status(200).entity("1 nice api 🚀").build();
+			return Response.status(200).entity("Successful connection to server 🚀!").build();
 		else
-			return Response.status(500).entity("1 nice api 🚀  if working").build();
+			return Response.status(500).entity("Connection to server failed.").build();
 	}
 }
