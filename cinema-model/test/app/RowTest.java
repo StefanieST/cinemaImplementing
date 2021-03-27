@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
+import generated.cinemaApp.CinemaApp;
 import generated.cinemaApp.ModelException;
 import generated.cinemaApp.Room;
 import generated.cinemaApp.Row;
@@ -12,7 +13,7 @@ public class RowTest {
 	
 	@Test
 	public void create6SeatsPerRow() throws ModelException {
-		
+		CinemaApp.getInstance();
 		Stall front = Stall.getInstance();
 		Room room = Room.createFresh("Room 2");
 		Row rowAroom = Row.createFresh(front, "A", room);

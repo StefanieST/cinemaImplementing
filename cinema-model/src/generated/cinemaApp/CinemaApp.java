@@ -1,4 +1,4 @@
-/**--- Generated at Thu Mar 11 23:51:08 CET 2021 
+/**--- Generated at Sat Mar 27 14:21:54 CET 2021 
  * --- Change only in Editable Sections!  
  * --- Do not touch section numbering!   
  */
@@ -18,6 +18,7 @@ import db.connection.TypeKeyManager;
 import db.connection.DBConnectionManager;
 import db.connection.DBConnectionData;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -234,44 +235,75 @@ public class CinemaApp extends Observable{
       db.connection.DBConnectionManager.getTheInstance().close();
    }
    //80 ===== Editable : Your Operations =============
-/**
- * person reserves one seat in a chosen showing
- */
-   public Reservation reserveSeat(Person person, Showing showing, Row row)throws NotAvailable, ModelException{
-	   Set<Reservation> reservations = showing.getReservation();
-	   List<Seat> seats = row.getSeats();
-	   for (Seat seat : seats) {
-		   for (Reservation reservation : reservations) {
-			 if(!seat.equals(reservation.getSeat())){
-				 Reservation.createFresh(person, seat, showing);
-			 }
+	/**
+	 * person reserves one seat in a chosen showing
+	 */
+	public Reservation reserveSeat(Person person, Showing showing, Row row) throws NotAvailable, ModelException {
+		Set<Reservation> reservations = showing.getReservation();
+		List<Seat> seats = row.getSeats();
+		List<Seat> reservedSeats = new ArrayList<>();
+		Seat currentSeat = null;
+
+		for (Seat seat : seats) {
+			if (reservations.isEmpty()) {
+				currentSeat = seat;
+				break;
+			} else {
+				for (Reservation reservation : reservations) {
+					reservedSeats.add(reservation.getSeat());
+					if (!reservedSeats.contains(seat)) {
+						currentSeat = seat;
+					}
+				}
+			}
 		}
-		  
+		if (currentSeat != null) {
+			return Reservation.createFresh(person, currentSeat, showing);
+		} else {
+			throw new NotAvailable();
+		}
+	}
+
+	/**
+	 * return the income of a chosen showing
+	 */
+	public Integer calculateIncome(Showing showing) throws ModelException {
+		Set<Reservation> reservations = showing.getReservation();
+		Integer result = 0;
+		for (Reservation reservation : reservations) {
+			if (reservation.getBooking().isPresent()) {
+				result = result + reservation.getSeat().getRow().getCategory().getPrice().orElse(0);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * person books reservation which was made before
+	 * 
+	 * @throws ModelException
+	 */
+	public Booking bookSeat(Person person, Showing showing) throws ModelException {
+		List<Person> persons = new ArrayList<>();
+		Set<Reservation> reservations = showing.getReservation();
+		Booking book = null;
+			for (Reservation reservation : reservations) {
+				if (reservation.getBooking().isEmpty()) {
+					persons.add(reservation.getPerson());
+				}
+			}
+			if (persons.contains(person)) {
+				Set<Reservation> reserve = person.getReserveration();
+				for (Reservation reservation : reserve) {
+					book = Booking.createFresh();
+					reservation.setBooking(book);
+				}
+			} else{
+				throw new ModelException("The person did not do a reservation");
+			}
 		
+		return book;
+
 	}
-	   //if(showing.getReservation().)
-	   //Reservation reservation = Reservation.createFresh(person, row., showing)
-      return null;
-   }
-/**
- * return the income of a chosen showing
- */
-   public Integer calculateIncome(Showing showing) throws ModelException{
-	   Set<Reservation> reservations = showing.getReservation();
-	   Integer result = 0; 
-	   for (Reservation reservation : reservations) {
-		if(reservation.getBooking().isPresent()) {
-			result = result + reservation.getSeat().getRow().getCategory().getPrice().orElse(0);	
-		} 
-	}
-	return result;
-   }
-/**
- * person books reservation which was made before
- */
-   public Booking bookSeat(Person person){
-      // TODO: Implement Operation bookSeat
-      return null;
-   }
 //90 ===== GENERATED: End of Your Operations ======
 }

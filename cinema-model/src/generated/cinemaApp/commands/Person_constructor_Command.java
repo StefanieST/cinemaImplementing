@@ -1,11 +1,11 @@
-/**--- Generated at Thu Mar 11 23:51:08 CET 2021 
+/**--- Generated at Sat Mar 27 14:21:54 CET 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.commands;
 import generated.cinemaApp.*;
 import commands.*;
 public class Person_constructor_Command extends ServiceCommand<Person>{
-   private static final long serialVersionUID = 1938182583L;
+   private static final long serialVersionUID = -283457921L;
    private String  name;
    public Person_constructor_Command(String  name){
       super();
