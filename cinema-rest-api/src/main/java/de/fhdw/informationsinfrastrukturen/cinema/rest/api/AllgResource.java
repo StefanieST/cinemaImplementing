@@ -17,10 +17,10 @@ public class AllgResource {
 	private Exception INIT_ERROR;
 	
 	
-	@Path("/income/{income}")
+	@Path("/income/{income-id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	@GET
-	public Response income(@PathParam("film") String film, @PathParam("room") String room) throws PersistenceException {
+	public Response income(@PathParam("showing-id") Integer showing) throws PersistenceException {
 		
 		
 		
