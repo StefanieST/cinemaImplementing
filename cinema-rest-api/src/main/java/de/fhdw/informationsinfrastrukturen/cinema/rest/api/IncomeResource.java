@@ -19,15 +19,15 @@ public class IncomeResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	@GET
 	public Response income(@PathParam("showingId") String showingId) {
+		if (this.INIT_ERROR != null)
+			return this.status();
 		try {
 			Showing showing = CinemaApp.getInstance().getShowing(Integer.valueOf(showingId));
-			return Response.status(200).entity(CinemaApp.getInstance().calculateIncome(showing)).build();
+			Integer income = CinemaApp.getInstance().calculateIncome(showing);
+			return Response.status(200).entity(income.toString()).build();
 		} catch (Exception e) {
 			return Response.status(400).entity("The requested showing id does not exist.").build();
 		}
-
-		// Url?username=Hugo&showing=1
-
 	}
 
 	@Path("/status")

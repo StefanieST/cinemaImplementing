@@ -1,4 +1,4 @@
-/**--- Generated at Sat Mar 27 18:25:07 CET 2021 
+/**--- Generated at Wed Mar 31 23:30:53 CEST 2021 
  * --- Change only in Editable Sections!  
  * --- Do not touch section numbering!   
  */
@@ -244,16 +244,18 @@ public class CinemaApp extends Observable{
 		List<Seat> reservedSeats = new ArrayList<>();
 		Seat currentSeat = null;
 
+		for (Reservation reservation : reservations) {
+					reservedSeats.add(reservation.getSeat());
+		}
+		
 		for (Seat seat : seats) {
 			if (reservations.isEmpty()) {
 				currentSeat = seat;
 				break;
-			} else {
-				for (Reservation reservation : reservations) {
-					reservedSeats.add(reservation.getSeat());
-					if (!reservedSeats.contains(seat)) {
-						currentSeat = seat;
-					}
+			} else { 
+				if (!reservedSeats.contains(seat)) {
+					currentSeat = seat;
+					break;
 				}
 			}
 		}
@@ -283,27 +285,15 @@ public class CinemaApp extends Observable{
 	 * 
 	 * @throws ModelException
 	 */
-	public Booking bookSeat(Person person, Showing showing) throws ModelException {
-		List<Person> persons = new ArrayList<>();
-		Set<Reservation> reservations = showing.getReservation();
-		Booking book = null;
-			for (Reservation reservation : reservations) {
+	public Booking bookSeat(Reservation reservation) throws ModelException {
 				if (reservation.getBooking().isEmpty()) {
-					persons.add(reservation.getPerson());
-				}
-			}
-			if (persons.contains(person)) {
-				Set<Reservation> reserve = person.getReserveration();
-				for (Reservation reservation : reserve) {
-					book = Booking.createFresh();
+					Booking book = Booking.createFresh();
 					reservation.setBooking(book);
-				}
-			} else{
-				throw new ModelException("The person did not do a reservation");
+					return book;
+				} else {
+				throw new ModelException("The Reservation is already booked.");
 			}
-		
-		return book;
-
 	}
+
 //90 ===== GENERATED: End of Your Operations ======
 }

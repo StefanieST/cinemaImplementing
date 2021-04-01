@@ -1,20 +1,18 @@
-/**--- Generated at Tue Mar 09 22:50:56 CET 2021 
+/**--- Generated at Wed Mar 31 23:30:53 CEST 2021 
  * --- No Change Allowed!  
  */
 package generated.cinemaApp.commands;
 import generated.cinemaApp.*;
 import commands.*;
 public class bookSeat_Command extends ServiceCommand<Booking>{
-   private static final long serialVersionUID = 1887568590L;
-   private Person person;
-   private Showing showing;
-   public bookSeat_Command(Person person, Showing showing){
+   private static final long serialVersionUID = 772194858L;
+   private Reservation reservation;
+   public bookSeat_Command(Reservation reservation){
       super();
-      this.person = person;
-      this.showing = showing;
+      this.reservation = reservation;
    }
    public void execute(){
-      try{this.result = CinemaApp.getInstance().bookSeat(person, showing);
+      try{this.result = CinemaApp.getInstance().bookSeat(reservation);
       }catch(Exception e){this.e = e;
       }finally{CinemaApp.getInstance().notifyObservers(this);}
    }

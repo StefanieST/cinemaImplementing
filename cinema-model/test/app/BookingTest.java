@@ -39,8 +39,8 @@ public class BookingTest {
 		Reservation reserve = CinemaApp.getInstance().reserveSeat(person, harry2RoomThree, rowAroom);
 		Reservation reserve1 = CinemaApp.getInstance().reserveSeat(person1, harry2RoomThree, rowAroom);
 		
-		Booking book = CinemaApp.getInstance().bookSeat(person, harry2RoomThree);
-		Booking book1 = CinemaApp.getInstance().bookSeat(person1, harry2RoomThree);
+		Booking book = CinemaApp.getInstance().bookSeat(reserve);
+		Booking book1 = CinemaApp.getInstance().bookSeat(reserve1);
 
 		assertEquals(reserve.getBooking(), Optional.of(book));
 		assertEquals(reserve1.getBooking(), Optional.of(book1));
@@ -53,7 +53,6 @@ public class BookingTest {
 		front.setPrice(6);
 		
 		Person person = Person.createFresh("Stefanie");
-		Person person1 = Person.createFresh("Marc");
 		
 		Film harry = Film.createFresh("Harry Potter 2");
 		Room room = Room.createFresh("Room 3");
@@ -63,13 +62,13 @@ public class BookingTest {
 		
 		Reservation reserve = CinemaApp.getInstance().reserveSeat(person, harry2RoomThree, rowAroom);
 		
-		Booking book = CinemaApp.getInstance().bookSeat(person, harry2RoomThree);
+		Booking book = CinemaApp.getInstance().bookSeat(reserve);
 
 		assertEquals(reserve.getBooking(), Optional.of(book));
 		
 		assertThrows(
                 ModelException.class,
-                () -> CinemaApp.getInstance().bookSeat(person1, harry2RoomThree),
-                "The person did not do a reservation");
+                () -> CinemaApp.getInstance().bookSeat(reserve),
+                "The Reservation is already booked.");
 	}
 }
