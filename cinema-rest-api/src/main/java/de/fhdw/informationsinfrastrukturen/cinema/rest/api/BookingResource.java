@@ -1,5 +1,6 @@
 package de.fhdw.informationsinfrastrukturen.cinema.rest.api;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -18,16 +19,18 @@ private Exception INIT_ERROR;
 	@Path("/")
 	@Produces(MediaType.TEXT_PLAIN)
 	@POST
-	public Response booking(String reservationId) {
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response booking(Integer reservationId) {
 		if (this.INIT_ERROR != null)
 			return this.status();
 		try{
 			Reservation res = CinemaApp.getInstance().getReservation(Integer.valueOf(reservationId));
 		CinemaApp.getInstance().bookSeat(res);
 		String responseText = "You booked a seat in the film " + res.getShowing().getFilm()
-				.getName()+ ".\nSeat: "+ res.getSeat().getNumber()+ "\nRow: " 
-				+res.getSeat().getRow().getName()+  "\nRoom: "+ res.getShowing().getRoom().getName()+
-				"\nPrice: "+ res.getSeat().getRow().getCategory().getPrice().orElse(0);
+				.getName().toString()+ ". Seat: "+ res.getSeat().getNumber().toString()+ ", Row: " 
+				+res.getSeat().getRow().getName().toString()+  ". "+ res.getShowing()
+				.getRoom().getName().toString()+
+				". Price: "+ res.getSeat().getRow().getCategory().getPrice().orElse(0).toString();
 		
 		return Response.status(200).entity(responseText).build();
 		

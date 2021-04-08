@@ -1,4 +1,4 @@
-/**--- Generated at Wed Mar 31 23:30:53 CEST 2021 
+/**--- Generated at Thu Apr 08 13:20:09 CEST 2021 
  * --- Change only in Editable Sections!  
  * --- Do not touch section numbering!   
  */
@@ -19,10 +19,12 @@ import db.connection.DBConnectionManager;
 import db.connection.DBConnectionData;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 //20 ===== Editable : Your import section =========
 //30 ===== GENERATED: Main Section ================
 public class CinemaApp extends Observable{
@@ -294,6 +296,21 @@ public class CinemaApp extends Observable{
 				throw new ModelException("The Reservation is already booked.");
 			}
 	}
+	
+	public Collection<Integer> getAllShowings() throws ModelException {
+		Collection<Integer> showingIds = this.getShowingCache().values().stream().map(proxy -> proxy.getId())
+				.collect(Collectors.toList());
+		return showingIds;
+	}
+	
+	public Collection<Integer> getAllRows() throws ModelException {
+		Collection<Integer> rowIds = this.getRowCache().values().stream().map(proxy -> proxy.getId())
+				.collect(Collectors.toList());
+		return rowIds;
+	}
+	
+	
+	
 
 //90 ===== GENERATED: End of Your Operations ======
 }

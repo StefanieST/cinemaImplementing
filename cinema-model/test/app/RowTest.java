@@ -1,28 +1,17 @@
 package app;
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
 import generated.cinemaApp.CinemaApp;
 import generated.cinemaApp.ModelException;
-import generated.cinemaApp.Room;
-import generated.cinemaApp.Row;
-import generated.cinemaApp.Stall;
-public class RowTest {
-	
-	@Test
-	public void create6SeatsPerRow() throws ModelException {
-		CinemaApp.getInstance();
-		Stall front = Stall.getInstance();
-		Room room = Room.createFresh("Room 2");
-		Row rowAroom = Row.createFresh(front, "A", room);
-			rowAroom.createSeatsPerRow(6);
-			
-		assertEquals(rowAroom.getSeats().size(), 6);
-		assertEquals(rowAroom.getCategory(), front);
-		assertEquals(rowAroom.getTheObject().getRoom(), room);
-		assertEquals(rowAroom.getTheObject().getName(), "A");
-	}
+import generated.cinemaApp.NotAvailable;
 
+public class RowTest {
+	@Test
+	public void getAllRooms() throws ModelException, NotAvailable{
+		CinemaApp.getInstance();
+		
+		CinemaApp.getInstance().getAllRows().forEach(System.out::println);
+
+}
 }

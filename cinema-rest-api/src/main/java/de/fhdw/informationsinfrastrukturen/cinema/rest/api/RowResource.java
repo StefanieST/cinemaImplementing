@@ -1,9 +1,7 @@
 package de.fhdw.informationsinfrastrukturen.cinema.rest.api;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -16,32 +14,35 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import generated.cinemaApp.CinemaApp;
-import generated.cinemaApp.Showing;
 
-@Path("/showingInfo")
-public class ShowingResource {
+@Path("/rowInfo")
+public class RowResource {
 	
 	private Exception INIT_ERROR;
 
 	@Path("/")
 	@Produces(MediaType.TEXT_PLAIN)
 	@GET
-	public Response showingInfo() {
+	public Response rowInfo() {
 		if (this.INIT_ERROR != null)
 			return this.status();
 		try {
-			JSONArray allShowings = new JSONArray();
-			Collection<Integer> showingIds = CinemaApp.getInstance().getAllShowings();
 			
-			for (Integer showing : showingIds) {
-			JSONObject showingObject = new JSONObject();	
-			showingObject.put("showingId", showing);
-			showingObject.put("filmName", CinemaApp.getInstance().getShowing(showing).getFilm().getName());
-			showingObject.put("roomId", CinemaApp.getInstance().getShowing(showing).getRoom().getId());
-			allShowings.put(showingObject);
+			JSONArray allRows = new JSONArray();
+		
+			Collection<Integer> rowIds = CinemaApp.getInstance().getAllRows();
+			
+				for (Integer rowId : rowIds) {
+					JSONObject rowObject = new JSONObject();
+					rowObject.put("roomId",CinemaApp.getInstance().getRow(rowId).getRoom().getId());
+					rowObject.put("rowId",rowId);
+					rowObject.put("rowName", CinemaApp.getInstance().getRow(rowId).getName());
+					rowObject.put("rowCategorie",CinemaApp.getInstance().getRow(rowId).getCategory().getName().orElse("nN"));
+					rowObject.put("categoriePreis", CinemaApp.getInstance().getRow(rowId).getCategory().getPrice().orElse(0));
+				allRows.put(rowObject);
 			}
 			
-			return Response.status(200).entity(allShowings).build();
+			return Response.status(200).entity(allRows).build();
 		} catch (Exception e) {
 			return Response.status(400).entity("There are no information about Showing.").build();
 		}
@@ -57,6 +58,3 @@ public class ShowingResource {
 			return Response.status(500).entity("Connection to server failed.").build();
 	}
 }
-
-
-

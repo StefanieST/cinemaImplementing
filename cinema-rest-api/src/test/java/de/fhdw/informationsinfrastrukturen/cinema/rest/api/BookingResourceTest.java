@@ -34,11 +34,11 @@ public class BookingResourceTest {
     Response reservation2 = res.reservation(user2);
     
     BookingResource book = new BookingResource();
-    Response booking = book.booking(reservation.getEntity().toString());
+    Response booking = book.booking(Integer.valueOf(reservation.getEntity().toString()));
     System.out.println(booking.getEntity());
     assertEquals(200, booking.getStatus());
-    assertEquals(200, book.booking(reservation1.getEntity().toString()).getStatus());
-    assertEquals(200, book.booking(reservation2.getEntity().toString()).getStatus());
+    assertEquals(200, book.booking(Integer.valueOf(reservation1.getEntity().toString())).getStatus());
+    assertEquals(200, book.booking(Integer.valueOf(reservation2.getEntity().toString())).getStatus());
     
     
 	}
@@ -55,10 +55,10 @@ public class BookingResourceTest {
     Response reservation = res.reservation(user3);
     
     BookingResource book = new BookingResource();
-    Response booking = book.booking(reservation.getEntity().toString());
+    Response booking = book.booking(Integer.valueOf(reservation.getEntity().toString()));
     assertEquals(200, booking.getStatus());
     
-    Response oneMoreTryToBook = book.booking(reservation.getEntity().toString());
+    Response oneMoreTryToBook = book.booking(Integer.valueOf(reservation.getEntity().toString()));
     assertEquals(400, oneMoreTryToBook.getStatus());
     System.out.println(oneMoreTryToBook.getEntity());
     
